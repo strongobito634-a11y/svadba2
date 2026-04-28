@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Вадим & Мария | Приглашение на свадьбу</title>
+    <!-- Подключаем шрифты для нежности и элегантности -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fbf9f5;  /* тёплый кремовый фон как на сканах */
+            font-family: 'Inter', sans-serif;
+            color: #2c2b28;
+            line-height: 1.4;
+            padding: 24px 16px 64px;
+        }
+
+        /* главный контейнер сайта — имитация карточки "Свадебный сайт" */
+        .wedding-site {
+            max-width: 660px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        /* шапка с навигацией в стиле "Конструктор | Ответы гостей" */
+        .site-header {
+            padding: 20px 24px 12px;
+            border-bottom: 1px solid #f0ebe3;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            background: white;
+        }
+
+        .logo-area h1 {
+            font-size: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            letter-spacing: -0.2px;
+            color: #4a3b2c;
+            margin-bottom: 4px;
+        }
+
+        .logo-area .tag {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #b29a7a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #8f7a64;
+        }
+
+        .nav-links span {
+            cursor: default;
+            padding-bottom: 4px;
+            border-bottom: 1px dashed #e2d5c8;
+        }
+
+        /* основное содержание */
+        .site-content {
+            padding: 28px 28px 40px;
+        }
+
+        /* блок с именами и таймером */
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .couple-names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #5b3e2a;
+            margin-bottom: 12px;
+        }
+
+        .date {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #b48b5a;
+            background: #fef6ed;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            margin-bottom: 28px;
+        }
+
+        /* таймер как на макете "52 дня 2 часа ..." */
+        .timer-block {
+            background: #fef9f2;
+            border-radius: 48px;
+            padding: 16px 12px;
+            margin: 20px 0 24px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-weight: 500;
+            border: 1px solid #f3eade;
+        }
+
+        .timer-item {
+            text-align: center;
+            min-width: 70px;
+        }
+
+        .timer-number {
+            font-size: 1.9rem;
+            font-weight: 600;
+            font-family: 'Inter', monospace;
+            letter-spacing: 1px;
+            color: #674f38;
+            line-height: 1.2;
+        }
+
+        .timer-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #b2967c;
+            letter-spacing: 1px;
+        }
+
+        .greeting-text {
+            font-size: 1rem;
+            color: #5a4a3a;
+            background: #fffaf5;
+            padding: 24px 20px;
+            border-radius: 28px;
+            margin: 20px 0 20px;
+            line-height: 1.5;
+            text-align: center;
+            border: 1px solid #f5ede4;
+        }
+
+        /* кнопка-якорь для раздела "Ответы гостей" (имитация) */
+        .rsvp-note {
+            text-align: center;
+            margin: 10px 0 24px;
+        }
+
+        .rsvp-badge {
+            display: inline-block;
+            background: #e9dfd3;
+            padding: 6px 24px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #5f4a34;
+            letter-spacing: 0.5px;
+        }
+
+        /* Секции программы / дресс-код / подарки — организованы как карточки */
+        .sections-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-top: 30px;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 8px 0 0;
+            border: 1px solid #f2e9e0;
+            transition: 0.2s;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #6f4e31;
+            padding: 8px 24px 0;
+            letter-spacing: -0.3px;
+            border-left: 4px solid #e7cfb5;
+            margin-left: 20px;
+            margin-bottom: 18px;
+        }
+
+        .program-list {
+            padding: 12px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .program-event {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: baseline;
+            border-bottom: 1px dashed #f0e2d4;
+            padding-bottom: 16px;
+        }
+        .program-event:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .event-time {
+            font-weight: 600;
+            font-size: 1.1rem;
+            min-width: 70px;
+            color: #ab8462;
+        }
+
+        .event-desc {
+            flex: 1;
+            font-size: 0.95rem;
+            color: #3f3429;
+            line-height: 1.4;
+        }
+        .event-place {
+            display: block;
+            font-size: 0.8rem;
+            color: #917e68;
+            margin-top: 6px;
+        }
+
+        .dress-gift-content {
+            padding: 8px 24px 24px;
+        }
+
+        .qa-block {
+            margin-bottom: 28px;
+        }
+        .qa-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #5f4a34;
+            margin-bottom: 8px;
+            display: inline-block;
+            border-bottom: 1.5px solid #eedbcb;
+            padding-right: 8px;
+        }
+        .qa-answer {
+            font-size: 0.95rem;
+            color: #4f4237;
+            margin-top: 6px;
+            line-height: 1.5;
+            padding-left: 8px;
+            border-left: 2px solid #f2e1d2;
+        }
+
+        .flower-note {
+            background: #fef7ef;
+            border-radius: 20px;
+            padding: 14px 20px;
+            margin-top: 10px;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #8d6b48;
+        }
+
+        .footer-bless {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ede3d8;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #b68b62;
+        }
+        .footer-bless span {
+            font-size: 0.9rem;
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            margin-top: 8px;
+            color: #9f846a;
+        }
+
+        /* микрокоррекция для кнопки ответов гостей (имитация response) */
+        .guest-answer-link {
+            background: #faf3ea;
+            text-align: center;
+            padding: 14px 20px;
+            border-radius: 60px;
+            margin: 16px 24px 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #eedfcb;
+            color: #6c533c;
+        }
+        .guest-answer-link:hover {
+            background: #f3e8dd;
+        }
+
+        /* отступы для мобильных */
+        @media (max-width: 550px) {
+            .site-content {
+                padding: 20px 18px 32px;
+            }
+            .couple-names {
+                font-size: 2.4rem;
+            }
+            .timer-number {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wedding-site">
+    <!-- Шапка: Свадебный сайт / Основной / Конструктор / Ответы гостей -->
+    <div class="site-header">
+        <div class="logo-area">
+            <h1>Свадебный сайт</h1>
+            <div class="tag">Основной</div>
+        </div>
+        <div class="nav-links">
+            <span>Конструктор</span>
+            <span>Ответы гостей</span>
+        </div>
+    </div>
+
+    <div class="site-content">
+        <!-- Имена и дата -->
+        <div class="hero">
+            <div class="couple-names">Вадим Мария</div>
+            <div class="date">19 июня 2026</div>
+        </div>
+
+        <!-- Таймер как на первом скрине -->
+        <div class="timer-block" id="timerContainer">
+            <div class="timer-item"><div class="timer-number" id="days">52</div><div class="timer-label">дня</div></div>
+            <div class="timer-item"><div class="timer-number" id="hours">02</div><div class="timer-label">часа</div></div>
+            <div class="timer-item"><div class="timer-number" id="minutes">34</div><div class="timer-label">минуты</div></div>
+            <div class="timer-item"><div class="timer-number" id="seconds">36</div><div class="timer-label">секунды</div></div>
+        </div>
+
+        <!-- Тёплое приветствие как в оригинале -->
+        <div class="greeting-text">
+            Дорогие гости<br><br>
+            В нашей жизни скоро состоится важное событие - наша свадьба!<br> 
+            Мы приглашаем вас и будем рады провести этот особенный день<br> 
+            в кругу самых близких людей!
+        </div>
+
+        <!-- имитация блока "Настройки / Разделы" + Ответы гостей в интерактиве -->
+        <div class="rsvp-note">
+            <div class="rsvp-badge">Настройки · Разделы</div>
+        </div>
+        
+        <!-- Основные разделы: программа, дресс-код, подарки -->
+        <div class="sections-grid">
+            <!-- ПРОГРАММА СВАДЬБЫ -->
+            <div class="section-card">
+                <div class="section-title">Программа свадьбы</div>
+                <div class="program-list">
+                    <div class="program-event">
+                        <div class="event-time">12:30</div>
+                        <div class="event-desc">
+                            Сбор гостей, ЗАГС Петроградского района
+                            <span class="event-place">г. Санкт-Петербург, ул. Монетная, 17-19</span>
+                        </div>
+                    </div>
+                    <div class="program-event">
+                        <div class="event-time">12:40</div>
+                        <div class="event-desc">
+                            Торжественная регистрация
+                        </div>
+                    </div>
+                    <div class="program-event">
+                        <div class="event-time">18:00</div>
+                        <div class="event-desc">
+                            Ресторан «Дружба»
+                            <span class="event-place">г. Выборг, ул. Железнодорожная, 5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ВОПРОСЫ ГОСТЕЙ: дресс-код + подарки (как на 3 и 4 скринах) -->
+            <div class="section-card">
+                <div class="section-title">Отвечаем на Ваши вопросы</div>
+                <div class="dress-gift-content">
+                    <div class="qa-block">
+                        <div class="qa-question">Будет ли дресс код?</div>
+                        <div class="qa-answer">
+                            Приходите в чем вам будет комфортнее. Но будем рады, если вы поддержите пастельную цветовую гамму.
+                        </div>
+                    </div>
+                    <div class="qa-block">
+                        <div class="qa-question">Что дарить?</div>
+                        <div class="qa-answer">
+                            Лучшим подарком для нас станет ваша улыбка и... пополнение семейного бюджета.<br>
+                            Крупные букеты просим оставить в магазинах. А чтобы традиция цветов всё же жила: один маленький цветок от гостя мы с радостью примем и поставим в общую вазу.
+                        </div>
+                    </div>
+                    <div class="flower-note">
+                        🌸 Маленький цветок – большая радость. Создадим вместе живой букет нежности!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- блок "Будем счастливы видеть вас" как на последнем фото, с небольшим акцентом -->
+        <div class="footer-bless">
+            Будем счастливы видеть вас
+            <span>Вадим & Мария</span>
+        </div>
+
+        <!-- кнопка-приглашение к ответу гостя (имитация формы / конструктора) -->
+        <div class="guest-answer-link" id="fakeResponseBtn">
+            📋 Подтвердить присутствие → 
+        </div>
+        <div style="text-align: center; font-size: 0.7rem; color: #cbbcaa; margin: 8px 0 10px;">
+            * Пожалуйста, ответьте до 1 мая 2026
+        </div>
+    </div>
+</div>
+
+<!-- Небольшой скрипт для обновляемого таймера (52 дня, часы и т.д) -->
+<script>
+    (function() {
+        // дата свадьбы: 19 июня 2026 года, время берём за 00:00:00 (для красоты можно 12:00, но оставим полночь отсчета)
+        // по тексту в таймере на первом макете написаны числа, но мы будем отсчитывать динамически до 19 июня 2026
+        const weddingDate = new Date(2026, 5, 19, 0, 0, 0); // месяц 5 = июнь
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = weddingDate - now;
+
+            if (diff <= 0) {
+                // если дата прошла, показываем нули и сообщение
+                document.getElementById('days').innerText = '0';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                return;
+            }
+
+            const totalSeconds = Math.floor(diff / 1000);
+            const days = Math.floor(totalSeconds / 86400);
+            const hours = Math.floor((totalSeconds % 86400) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    })();
+
+    // легкий "ответ гостей" - при клике имитируем модалку или уведомление (для интерактива, сохраняя стиль)
+    const responseBtn = document.getElementById('fakeResponseBtn');
+    if(responseBtn) {
+        responseBtn.addEventListener('click', () => {
+            // элегантное alert, но можно заменить на милый попап
+            alert('💌 Спасибо за отклик! \nВы можете подтвердить участие лично или позвонить нам. \nЖдём вас на свадьбе!');
+        });
+    }
+</script>
+<!-- 
+    Стилистически сохранены все элементы: 
+    - Имена Вадим Мария 
+    - Даты, таймер, приветствие 
+    - Программа с локациями (ЗАГС Петроградского района, Ресторан Дружба) 
+    - Вопросы про дресс-код и подарки с фразой "один маленький цветок..." 
+    - Фраза "Будем счастливы видеть вас" и указание пастельной гаммы.
+    Полностью соответствует визуальному настроению и текстам из скриншотов.
+-->
+</body>
+</html>
